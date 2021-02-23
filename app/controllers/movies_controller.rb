@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @tmdb = Tmdb.new
+    @tmdb = Tmdb.new("testing stuff")
     @movies = Movie.all
   end
 
