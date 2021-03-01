@@ -1,5 +1,12 @@
+<%= turbo_frame_tag "search_form" do %>
+  <%= form_with url: "/search", method: :get do |form| %>
+    <%= form.text_field :query %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<br>
 <p id="notice"><%= notice %></p>
-<a href="<%= @tmdb.multi_search %>">api</a>
 
 <h1>Movies</h1>
 
@@ -14,7 +21,6 @@
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
-        <td><%= movie.name %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>

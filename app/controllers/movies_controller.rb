@@ -1,9 +1,14 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
 
+  def search
+    @tmdb = Tmdb.new(params[:query])
+    @results = @tmdb.call
+    # results[0].original_title, results[0].release_date, results[0].overview, results[0].media_type, results[0].poster_path
+  end
+
   # GET /movies or /movies.json
   def index
-    @tmdb = Tmdb.new("testing stuff")
     @movies = Movie.all
   end
 
