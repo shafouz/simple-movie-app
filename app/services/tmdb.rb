@@ -13,18 +13,18 @@ class Tmdb
         response_data[:movie_amount] += 1
         {
           title: result["title"], original_title: result["original_title"], release_date: result["release_date"],
-          overview: result["overview"], poster_path: result["poster_path"], media_type: "movie"
+          overview: result["overview"], poster_path: result["poster_path"], popularity: result["popularity"], media_type: "movie"
         }
       when "tv"
         response_data[:tv_amount] += 1
         {
           name: result["name"], original_name: result["original_name"], first_air_date: result["first_air_date"],
-          overview: result["overview"], poster_path: result["poster_path"], media_type: "tv"
+          overview: result["overview"], poster_path: result["poster_path"], popularity: result["popularity"], media_type: "tv"
         }
       when "person"
         response_data[:person_amount] += 1
         {
-          name: result["name"], profile_path: result["profile_path"], media_type: "person"
+          name: result["name"], profile_path: result["profile_path"], popularity: result["popularity"], media_type: "person"
         }
       else
         {}
@@ -38,7 +38,6 @@ class Tmdb
 
     format_response(response, response_data)
 
-    MovieSaverJob.perform_now(response_data[:formatted_results])
     response_data
   end
 

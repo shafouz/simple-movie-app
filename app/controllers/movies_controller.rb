@@ -2,9 +2,14 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   def search
-    @tmdb = Tmdb.new(params[:query])
-    @results = @tmdb.call
-    # results[0].original_title, results[0].release_date, results[0].overview, results[0].media_type, results[0].poster_path
+    if !(Search.exists? params[:query])
+      Search.create(query: params[:query])
+      @results = Tmdb.new(params[:query]).call
+      MovieSaverJob.perform_now(@results[:formatted_results])
+      @results
+    else
+      @results = Movie.where("LOWER(original_title) LIKE ?", "%#{params[:query]}%")
+    end
   end
 
   # GET /movies or /movies.json
@@ -63,13 +68,13 @@ class MoviesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def movie_params
-      params.require(:movie).permit(:name)
-    end
+  # Only allow a list of trusted parameters through.
+  def movie_params
+    params.require(:movie).permit(:name)
+  end
 end
