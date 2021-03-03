@@ -8,7 +8,7 @@ class MediaController < ApplicationController
       MediaSaverJob.perform_now(@results[:formatted_results])
       @results
     else
-      @results = Medium.where("LOWER(original_title) LIKE ? OR LOWER(original_name) LIKE ? OR LOWER(name) LIKE ?", "%#{params[:query]}%")
+      @results = Medium.multi_search(params[:query])
     end
   end
 
