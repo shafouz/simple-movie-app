@@ -10,31 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_204110) do
+ActiveRecord::Schema.define(version: 2021_03_03_184025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "movies", force: :cascade do |t|
+  create_table "media", force: :cascade do |t|
     t.text "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.text "original_title"
+    t.text "name"
+    t.text "original_name"
+    t.text "first_air_date"
+    t.text "profile_path"
+    t.text "release_date"
     t.text "overview"
     t.text "poster_path"
-    t.text "release_date"
-    t.text "original_title"
+    t.text "popularity"
     t.text "media_type"
-    t.string "popularity"
-    t.index ["title", "release_date"], name: "index_movies_on_title_and_release_date", unique: true
-  end
-
-  create_table "people", force: :cascade do |t|
-    t.text "name"
-    t.text "profile_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "media_type"
-    t.string "popularity"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -42,19 +36,6 @@ ActiveRecord::Schema.define(version: 2021_03_02_204110) do
     t.integer "number_of_searches", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tvs", force: :cascade do |t|
-    t.text "name"
-    t.text "original_name"
-    t.text "overview"
-    t.text "poster_path"
-    t.text "first_air_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "media_type"
-    t.string "popularity"
-    t.index ["name", "first_air_date"], name: "index_tvs_on_name_and_first_air_date", unique: true
   end
 
   create_table "users", force: :cascade do |t|
