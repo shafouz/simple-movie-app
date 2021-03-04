@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_184025) do
     t.text "release_date"
     t.text "overview"
     t.text "poster_path"
-    t.text "popularity"
+    t.float "popularity"
     t.text "media_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -2,6 +2,8 @@ class MediaController < ApplicationController
   before_action :set_medium, only: %i[ show edit update destroy ]
 
   def search
+    # params[:media_type] = movies, tv or person
+    # params[:query] = query
     if !(Search.exists? params[:query])
       Search.create(query: params[:query])
       @results = Tmdb.new(params[:query]).call

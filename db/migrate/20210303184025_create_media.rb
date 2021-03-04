@@ -10,7 +10,7 @@ class CreateMedia < ActiveRecord::Migration[6.1]
       t.text :release_date
       t.text :overview
       t.text :poster_path
-      t.integer :popularity
+      t.float :popularity
       t.text :media_type
 
       t.timestamps
