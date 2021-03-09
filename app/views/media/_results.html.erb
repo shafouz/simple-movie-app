@@ -1,4 +1,9 @@
-<h1>Resultados para <%= query %></h1>
-<% results.each do |result| %>
-  <p><%= result["title"] %></p>
-<% end %>
+<div class="movie-results">
+  <% results["movies"].each do |result| %>
+    <p><%= result["title"] %></p>
+    <p><%= result["original_title"] %></p>
+    <p><%= result["overview"] %></p>
+    <p><%= result["poster_path"] %></p>
+    <p><%= result["release_date"] %></p>
+  <% end %>
+</div>

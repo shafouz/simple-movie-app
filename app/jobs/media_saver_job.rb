@@ -1,8 +1,14 @@
 class MediaSaverJob < ApplicationJob
   queue_as :default
 
-  def perform(formatted_results)
-    formatted_results.each do |result|
+  def perform(results)
+    results["movies"].each do |result|
+      Medium.create(result)
+    end
+    results["tvs"].each do |result|
+      Medium.create(result)
+    end
+    results["people"].each do |result|
       Medium.create(result)
     end
   end
