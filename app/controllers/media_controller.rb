@@ -1,6 +1,9 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: %i[ show edit update destroy ]
 
+  def test
+  end
+
   def search
     # params[:media_type] = movies, tv or person
     # params[:query] = query
@@ -14,7 +17,7 @@ class MediaController < ApplicationController
     end
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: turbo_stream.append("results", partial: "media/results", locals: { results: @results })
+        render turbo_stream: turbo_stream.replace("results", partial: "media/results", locals: { results: @results })
       }
     end
   end

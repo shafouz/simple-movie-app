@@ -2,20 +2,18 @@ import { Controller } from "stimulus"
 import { Turbo } from "turbo"
 
 export default class extends Controller {
-  static targets = [ "selectForm", "searchForm" ]
+  static targets = [ "movie", "tv", "person" ]
 
   connect() {
-    console.log("connected")
   }
 
-  showResults(event) {
-    let classList = event.target.classList
-    let media_type = classList[classList.length - 1]
-    let query = this.searchFormTarget.query.value
-    let selectForm = this.selectFormTarget
+  toggleDisplay(event) {
+    let target = event.target.classList
 
-    selectForm.query.value = query
-    selectForm.media_type.value = media_type
-    selectForm.requestSubmit();
+    if (target.contains("hidden")) {
+      target.remove("hidden")
+    } else {
+      target.add("hidden")
+    }
   }
 }

@@ -1,13 +1,11 @@
-<div data-controller="select" class="row">
+<div data-controller="display" class="row">
   <div class="col-3 sidebar">
     <ul class="list-group mx-2 my-2">
-      <%= render partial: "media/select_form" %>
-
       <%= render partial: "media/filters" %>
     </ul>
   </div>
 
-  <div class="col-6 d-flex justify-content-center">
+  <div class="col-6">
     <%= render partial: "media/search_form" %>
 
     <%= turbo_frame_tag "results" do %>

@@ -1,9 +1,34 @@
-<div class="movie-results">
+<div data-display-target="movie" class="movie-results hidden">
   <% results["movies"].each do |result| %>
-    <p><%= result["title"] %></p>
-    <p><%= result["original_title"] %></p>
-    <p><%= result["overview"] %></p>
-    <p><%= result["poster_path"] %></p>
-    <p><%= result["release_date"] %></p>
+    <div class="card mt-3" style="width: 18rem;">
+      <img src="insert poster" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= result["title"] %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= result["release_date"] %></h6>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div data-display-target="tv" class="tv-results hidden">
+  <% results["tvs"].each do |result| %>
+    <div class="card mt-3" style="width: 18rem;">
+      <img src="insert poster" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= result["name"] %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= result["first_air_date"] %></h6>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div data-display-target="person" class="person-results hidden">
+  <% results["people"].each do |result| %>
+    <div class="card mt-3" style="width: 18rem;">
+      <img src="insert poster" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= result["name"] %></h5>
+      </div>
+    </div>
   <% end %>
 </div>
