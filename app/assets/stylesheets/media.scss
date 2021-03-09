@@ -1,3 +1,16 @@
 // Place all the styles related to the Media controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.rounded-pill {
+  color: white;
+}
+
+ul {
+  font-size: 1rem !important;
+}
+
+.sidebar {
+  border-right: 1px solid grey;
+  height: 690px;
+}

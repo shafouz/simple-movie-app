@@ -1,0 +1,4 @@
+<%= form_with url: "/select_search", data: { select_target: "selectForm" } do |form| %>
+  <%= form.hidden_field :query %>
+  <%= form.hidden_field :media_type %>
+<% end %>

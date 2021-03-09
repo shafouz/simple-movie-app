@@ -38,7 +38,7 @@ class Tmdb
 
     format_response(response, response_data)
 
-    response_data
+    response_data.as_json
   end
 
   def call

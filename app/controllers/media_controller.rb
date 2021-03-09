@@ -1,21 +1,41 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: %i[ show edit update destroy ]
 
+  def select_search
+    case params[:media_type]
+    when "movie"
+      # Medium.movie_search(params[:query])
+    when "tv"
+      # Medium.tv_search(params[:query])
+    when "person"
+      # Medium.person_search(params[:query])
+    end
+  end
+
   def search
     # params[:media_type] = movies, tv or person
     # params[:query] = query
+    @query = params[:query]
     if !(Search.exists? params[:query])
       Search.create(query: params[:query])
       @results = Tmdb.new(params[:query]).call
-      MediaSaverJob.perform_now(@results[:formatted_results])
-      @results
+      MediaSaverJob.perform_now(@results["formatted_results"])
+      @results = @results["formatted_results"]
     else
       @results = Medium.multi_search(params[:query])
+    end
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace("results", partial: "media/results", locals: { results: @results, query: @query })
+      }
     end
   end
 
   # GET /media or /media.json
   def index
+    @results = Medium.multi_search("avengers ").limit(15)
+    @results = { "results" => @results.to_a.map(&:serializable_hash) }
+    @results = Tmdb.new("a").response_handler(@results)
     @media = Medium.all
   end
 
@@ -70,13 +90,13 @@ class MediaController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_medium
-      @medium = Medium.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_medium
+    @medium = Medium.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def medium_params
-      params.fetch(:medium, {})
-    end
+  # Only allow a list of trusted parameters through.
+  def medium_params
+    params.fetch(:medium, {})
+  end
 end

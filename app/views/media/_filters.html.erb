@@ -1,0 +1,16 @@
+<li data-action="click->select#showResults" class="list-group-item d-flex justify-content-between align-items-center multi">
+  Todos
+  <span class="badge bg-primary rounded-pill"><%= @results["multi_amount"] %></span>
+</li>
+<li data-action="click->select#showResults" class="list-group-item d-flex justify-content-between align-items-center movie">
+  Filmes
+  <span class="badge bg-primary rounded-pill"><%= @results["movie_amount"] %></span>
+</li>
+<li data-action="click->select#showResults" class="list-group-item d-flex justify-content-between align-items-center tv">
+  Series
+  <span class="badge bg-primary rounded-pill"><%= @results["tv_amount"] %></span>
+</li>
+<li data-action="click->select#showResults" class="list-group-item d-flex justify-content-between align-items-center person">
+  Pessoas
+  <span class="badge bg-primary rounded-pill"><%= @results["person_amount"] %></span>
+</li>
