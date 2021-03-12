@@ -1,5 +1,5 @@
 <div data-display-target="media" class="movie results">
-  <% results["movies"].each do |result| %>
+  <% @results["movies"].each do |result| %>
     <div class="card mt-3" style="width: 18rem;">
       <img src="insert poster" class="card-img-top" alt="...">
       <div class="card-body">
@@ -11,7 +11,7 @@
 </div>
 
 <div data-display-target="media" class="tv results">
-  <% results["tvs"].each do |result| %>
+  <% @results["tvs"].each do |result| %>
     <div class="card mt-3" style="width: 18rem;">
       <img src="insert poster" class="card-img-top" alt="...">
       <div class="card-body">
@@ -23,7 +23,7 @@
 </div>
 
 <div data-display-target="media" class="person results">
-  <% results["people"].each do |result| %>
+  <% @results["people"].each do |result| %>
     <div class="card mt-3" style="width: 18rem;">
       <img src="insert poster" class="card-img-top" alt="...">
       <div class="card-body">

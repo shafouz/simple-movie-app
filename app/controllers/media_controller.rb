@@ -1,5 +1,6 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: %i[ show edit update destroy ]
+  before_action :set_results, only: :index
 
   def search
     # params[:media_type] = movies, tv or person
@@ -13,17 +14,12 @@ class MediaController < ApplicationController
       @results = Medium.multi_search(params[:query])
     end
     respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace("results", partial: "media/results", locals: { results: @results })
-      }
+      format.turbo_stream
     end
   end
 
   # GET /media or /media.json
   def index
-    @results = Medium.multi_search("avengers ").limit(15)
-    @results = { "results" => @results.to_a.map(&:serializable_hash) }
-    @results = Tmdb.new("a").response_handler(@results)
     @media = Medium.all
   end
 
@@ -86,5 +82,9 @@ class MediaController < ApplicationController
   # Only allow a list of trusted parameters through.
   def medium_params
     params.fetch(:medium, {})
+  end
+
+  def set_results
+    @results = { movies: [], tvs: [], people: [], movie_amount: 0, tv_amount: 0, person_amount: 0, multi_amount: 0 }
   end
 end

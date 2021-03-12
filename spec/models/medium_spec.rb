@@ -68,4 +68,35 @@ RSpec.describe Medium, type: :model do
       expect(result.pluck(:media_type)).to_not include("tv")
     end
   end
+
+  describe "validations" do
+
+    describe "movie validations" do
+      let(:movie) { create(:movie) }
+      let(:movie2) { attributes_for(:movie, release_date: "test") }
+      let(:movie3) { attributes_for(:movie) }
+
+      it "saves with same original_title but different release_date" do
+        expect(Medium.new(movie2)).to be_valid
+      end
+
+      it "doesnt save with same original_title and same release_date" do
+        expect(Medium.new(movie3)).not_to be_valid
+      end
+    end
+
+    describe "tv validations" do
+      let(:tv) { create(:tv) }
+      let(:tv2) { attributes_for(:tv, first_air_date: "test") }
+      let(:tv3) { attributes_for(:tv) }
+
+      it "saves with same original_name but different first_air_date" do
+        expect(Medium.new(tv2)).to be_valid
+      end
+
+      it "doesnt save with same original_name and same first_air_date" do
+        expect(Medium.new(tv3)).not_to be_valid
+      end
+    end
+  end
 end

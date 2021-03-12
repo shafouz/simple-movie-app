@@ -10,15 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_210208) do
+ActiveRecord::Schema.define(version: 2021_03_12_212558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cars", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "media", force: :cascade do |t|
     t.text "title"
@@ -34,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_210208) do
     t.text "media_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["original_name", "first_air_date"], name: "index_media_on_original_name_and_first_air_date", unique: true
+    t.index ["original_title", "release_date"], name: "index_media_on_original_title_and_release_date", unique: true
   end
 
   create_table "searches", force: :cascade do |t|

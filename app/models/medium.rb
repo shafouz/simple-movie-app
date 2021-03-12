@@ -1,4 +1,7 @@
 class Medium < ApplicationRecord
+  validates :original_title, uniqueness: { scope: :release_date }, if: :is_movie?
+  validates :original_name, uniqueness: { scope: :first_air_date }, if: :is_tv?
+
   def self.multi_search(search)
     where(
       "LOWER(title) LIKE :search OR
@@ -30,5 +33,14 @@ class Medium < ApplicationRecord
       .where("LOWER(name) LIKE :search",
              search: "%#{search.downcase}%")
       .order(popularity: :desc)
+  end
+
+  private
+  def is_movie?
+    media_type == "movie"
+  end
+
+  def is_tv?
+    media_type == "tv"
   end
 end

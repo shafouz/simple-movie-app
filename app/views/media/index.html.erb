@@ -1,7 +1,9 @@
 <div data-controller="display" class="row">
   <div class="col-3 sidebar">
     <ul class="list-group mx-2 my-2">
-      <%= render partial: "media/filters" %>
+      <%= turbo_frame_tag "filters" do %>
+        <%= render partial: "media/filters" %>
+      <% end %>
     </ul>
   </div>
 
