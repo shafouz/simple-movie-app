@@ -1,9 +1,6 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: %i[ show edit update destroy ]
 
-  def test
-  end
-
   def search
     # params[:media_type] = movies, tv or person
     # params[:query] = query

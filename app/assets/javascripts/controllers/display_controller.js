@@ -2,48 +2,38 @@ import { Controller } from "stimulus"
 import { Turbo } from "turbo"
 
 export default class extends Controller {
-  static targets = [ "multi", "movie", "tv", "person" ]
+  static targets = [ "media" ]
 
   connect() {
+    console.log("its connected")
   }
 
-  toggleMulti() {
-    let target = this.multiTarget
+  changeResults(event) {
+    let media_type = event.target.getAttribute("data-media-type")
+    this.toggleDisplay(media_type)
+  }
 
-    if (target.contains("hidden")) {
-      target.remove("hidden")
+  toggleDisplay(media_type) {
+    if (media_type == "multi") {
+      this.showAll()
     } else {
-      target.add("hidden")
+      this.hideAllExcept(media_type)
     }
   }
 
-  toggleMovie() {
-    let target = this.movieTarget
-
-    if (target.contains("hidden")) {
-      target.remove("hidden")
-    } else {
-      target.add("hidden")
-    }
+  showAll() {
+    this.mediaTargets.forEach((e) => {
+      e.classList.remove("hidden")
+    })
   }
 
-  toggleTv() {
-    let target = this.tvTarget
-
-    if (target.contains("hidden")) {
-      target.remove("hidden")
-    } else {
-      target.add("hidden")
-    }
-  }
-
-  togglePerson() {
-    let target = this.personTarget
-
-    if (target.contains("hidden")) {
-      target.remove("hidden")
-    } else {
-      target.add("hidden")
-    }
+  hideAllExcept(media_type) {
+    this.mediaTargets.forEach((e) => {
+      if (e.classList[0] == media_type) {
+        e.classList.remove("hidden")
+      } else {
+        e.classList.add("hidden")
+      }
+    })
   }
 }
