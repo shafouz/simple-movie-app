@@ -1,16 +1,18 @@
-<li data-action="click->display#changeResults" data-media-type="multi" class="list-group-item d-flex justify-content-between align-items-center">
-  Todos
-  <span class="badge bg-primary rounded-pill"><%= @results["multi_amount"] %></span>
-</li>
-<li data-action="click->display#changeResults" data-media-type="movie" class="list-group-item d-flex justify-content-between align-items-center">
-  Filmes
-  <span class="badge bg-primary rounded-pill"><%= @results["movie_amount"] %></span>
-</li>
-<li data-action="click->display#changeResults" data-media-type="tv" class="list-group-item d-flex justify-content-between align-items-center">
-  Series
-  <span class="badge bg-primary rounded-pill" ><%= @results["tv_amount"] %></span>
-</li>
-<li data-action="click->display#changeResults" data-media-type="person" class="list-group-item d-flex justify-content-between align-items-center">
-  Pessoas
-  <span class="badge bg-primary rounded-pill"><%= @results["person_amount"] %></span>
-</li>
+<%= turbo_frame_tag "filters" do %>
+  <li data-action="click->display#changeResults" data-media-type="multi" class="list-group-item d-flex justify-content-between align-items-center">
+    Todos
+    <span class="badge bg-primary rounded-pill"><%= @results["multi_amount"] %></span>
+  </li>
+  <li data-action="click->display#changeResults" data-media-type="movie" class="list-group-item d-flex justify-content-between align-items-center">
+    Filmes
+    <span class="badge bg-primary rounded-pill"><%= @results["movie_amount"] %></span>
+  </li>
+  <li data-action="click->display#changeResults" data-media-type="tv" class="list-group-item d-flex justify-content-between align-items-center">
+    Series
+    <span class="badge bg-primary rounded-pill" ><%= @results["tv_amount"] %></span>
+  </li>
+  <li data-action="click->display#changeResults" data-media-type="person" class="list-group-item d-flex justify-content-between align-items-center">
+    Pessoas
+    <span class="badge bg-primary rounded-pill"><%= @results["person_amount"] %></span>
+  </li>
+<% end %>

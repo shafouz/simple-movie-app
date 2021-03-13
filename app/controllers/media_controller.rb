@@ -3,16 +3,15 @@ class MediaController < ApplicationController
   before_action :set_results, only: :index
 
   def search
-    # params[:media_type] = movies, tv or person
-    # params[:query] = query
-    if !(Search.exists? params[:query])
-      Search.create(query: params[:query])
-      @results = Tmdb.new(params[:query]).call
-      MediaSaverJob.perform_now(@results)
-      @results
-    else
+    if Search.exists? params[:query]
       @results = Medium.multi_search(params[:query])
+    else
+      @results = Tmdb.new(params[:query]).call
+      MediaSaverJob.perform_later(@results)
+      SearchSaverJob.perform_later(params[:query])
+      @results
     end
+
     respond_to do |format|
       format.turbo_stream
     end

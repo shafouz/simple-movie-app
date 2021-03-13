@@ -1,34 +1,36 @@
-<div data-display-target="media" class="movie results">
-  <% @results["movies"].each do |result| %>
-    <div class="card mt-3" style="width: 18rem;">
-      <img src="insert poster" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= result["title"] %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= result["release_date"] %></h6>
+<%= turbo_frame_tag "results" do %>
+  <div data-display-target="media" class="movie results">
+    <% @results["movies"].each do |result| %>
+      <div class="card mt-3" style="width: 18rem;">
+        <img src="insert poster" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= result["title"] %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= result["release_date"] %></h6>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
-<div data-display-target="media" class="tv results">
-  <% @results["tvs"].each do |result| %>
-    <div class="card mt-3" style="width: 18rem;">
-      <img src="insert poster" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= result["name"] %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= result["first_air_date"] %></h6>
+  <div data-display-target="media" class="tv results">
+    <% @results["tvs"].each do |result| %>
+      <div class="card mt-3" style="width: 18rem;">
+        <img src="insert poster" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= result["name"] %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= result["first_air_date"] %></h6>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
-<div data-display-target="media" class="person results">
-  <% @results["people"].each do |result| %>
-    <div class="card mt-3" style="width: 18rem;">
-      <img src="insert poster" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= result["name"] %></h5>
+  <div data-display-target="media" class="person results">
+    <% @results["people"].each do |result| %>
+      <div class="card mt-3" style="width: 18rem;">
+        <img src="insert poster" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= result["name"] %></h5>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

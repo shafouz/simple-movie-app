@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "media" ]
 
   connect() {
-    console.log("its connected")
   }
 
   changeResults(event) {
