@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'faraday'
 gem "hotwire-rails"
+
+gem "tailwindcss-rails", "~> 0.3.3"

@@ -204,6 +204,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (0.2.3)
       rails (>= 6.0.0)
+    tailwindcss-rails (0.3.3)
+      rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
     turbo-rails (0.5.9)
@@ -244,6 +246,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   spring
+  tailwindcss-rails (~> 0.3.3)
   tzinfo-data
   vcr
   web-console (>= 4.1.0)
