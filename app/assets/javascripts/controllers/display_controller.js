@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   changeResults(event) {
-    let media_type = event.target.getAttribute("data-media-type")
+    let media_type = event.currentTarget.getAttribute("data-media-type")
     this.toggleDisplay(media_type)
   }
 
