@@ -7,8 +7,7 @@ class MediaController < ApplicationController
       @results = Medium.multi_search(params[:query])
     else
       @results = Tmdb.new(params[:query]).call
-      MediaSaverJob.perform_later(@results)
-      SearchSaverJob.perform_later(params[:query])
+      run_jobs
       @results
     end
 
@@ -85,5 +84,11 @@ class MediaController < ApplicationController
 
   def set_results
     @results = { movies: [], tvs: [], people: [], movie_amount: 0, tv_amount: 0, person_amount: 0, multi_amount: 0 }.as_json
+  end
+
+  def run_jobs
+    #MediaSaverJob.perform_later(@results)
+    #SearchSaverJob.perform_later(params[:query])
+    ImageSaverJob.perform_later(@results)
   end
 end

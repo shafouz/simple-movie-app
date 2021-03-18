@@ -58,3 +58,4 @@ gem 'faraday'
 gem "hotwire-rails"
 gem "tailwindcss-rails", "~> 0.3.3"
 gem "down"
+gem "fileutils"
