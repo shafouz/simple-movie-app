@@ -84,6 +84,6 @@ class MediaController < ApplicationController
   end
 
   def set_results
-    @results = { movies: [], tvs: [], people: [], movie_amount: 0, tv_amount: 0, person_amount: 0, multi_amount: 0 }
+    @results = { movies: [], tvs: [], people: [], movie_amount: 0, tv_amount: 0, person_amount: 0, multi_amount: 0 }.as_json
   end
 end

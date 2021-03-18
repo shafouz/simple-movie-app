@@ -2,13 +2,16 @@ import { Controller } from "stimulus"
 import { Turbo } from "turbo"
 
 export default class extends Controller {
-  static targets = [ "media" ]
+  static targets = [ "media", "filter" ]
 
-  connect() {
+  changeBg(event) {
+    this.removeAllBgs()
+    event.currentTarget.classList.add("bg-gray-200")
   }
 
   changeResults(event) {
-    let media_type = event.currentTarget.getAttribute("data-media-type")
+    let target = event.currentTarget
+    let media_type = target.getAttribute("data-media-type")
     this.toggleDisplay(media_type)
   }
 
@@ -33,6 +36,12 @@ export default class extends Controller {
       } else {
         e.classList.add("hidden")
       }
+    })
+  }
+
+  removeAllBgs(){
+    this.filterTargets.forEach((e) => {
+      e.classList.remove("bg-gray-200")
     })
   }
 }
