@@ -5,13 +5,10 @@ class ImageSaverJob < ApplicationJob
 
   queue_as :default
 
-  def perform(results)
-    results = results["movies"].concat(results["tvs"], results["people"]).pluck("poster_path")
-    pp results
-    results.each do |result|
+  def perform(image_results)
+    image_results.each do |image_path|
 
-      pp result
-      temp = Down.download(poster_path(result))
+      temp = Down.download(poster_path(image_path))
 
       processed = ImageProcessing::Vips
         .source(temp.path)
@@ -20,9 +17,10 @@ class ImageSaverJob < ApplicationJob
         .call
 
       # original size
-      full_size = FileUtils.mv temp.path, Rails.root.join("storage/#{result}")
+      full_size = FileUtils.mv temp.path, Rails.root.join("storage/#{image_path}")
       # 100x100
-      small_size = FileUtils.mv processed.path, Rails.root.join("storage/100x#{result}")
+      image_path[0] = "/100x"
+      small_size = FileUtils.mv processed.path, Rails.root.join("storage/#{image_path}")
     end
   end
 end

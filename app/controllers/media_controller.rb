@@ -87,8 +87,12 @@ class MediaController < ApplicationController
   end
 
   def run_jobs
-    #MediaSaverJob.perform_later(@results)
-    #SearchSaverJob.perform_later(params[:query])
-    ImageSaverJob.perform_later(@results)
+    MediaSaverJob.perform_later(@results)
+    SearchSaverJob.perform_later(params[:query])
+    ImageSaverJob.perform_later(get_images)
+  end
+
+  def get_images
+    @results["movies"].concat(@results["tvs"], @results["people"]).filter_map { |x| x["poster_path"] || x["profile_path"] }
   end
 end
