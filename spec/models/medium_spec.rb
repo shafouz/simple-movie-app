@@ -39,36 +39,6 @@ RSpec.describe Medium, type: :model do
     end
   end
 
-  describe "movie_search" do
-    result = Medium.movie_search("John")
-
-    it "finds only movie media type" do
-      expect(result.pluck(:media_type)).to include("movie")
-      expect(result.pluck(:media_type)).to_not include("tv")
-      expect(result.pluck(:media_type)).to_not include("person")
-    end
-  end
-
-  describe "tv_search" do
-    result = Medium.tv_search("John")
-
-    it "finds only tv media type" do
-      expect(result.pluck(:media_type)).to include("tv")
-      expect(result.pluck(:media_type)).to_not include("movie")
-      expect(result.pluck(:media_type)).to_not include("person")
-    end
-  end
-
-  describe "person_search" do
-    result = Medium.person_search("John")
-
-    it "finds only person media type" do
-      expect(result.pluck(:media_type)).to include("person")
-      expect(result.pluck(:media_type)).to_not include("movie")
-      expect(result.pluck(:media_type)).to_not include("tv")
-    end
-  end
-
   describe "validations" do
 
     describe "movie validations" do
