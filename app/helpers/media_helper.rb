@@ -1,5 +1,10 @@
 module MediaHelper
-  def poster_path(img_path)
+  def get_image_path(img_path)
+    return "150.png" if img_path.blank?
+
+    exists = File.exist? Rails.root.join("app/assets/images#{img_path}")
+
+    return img_path.tr("/", "") if exists
     "https://image.tmdb.org/t/p/original#{img_path}"
   end
 
