@@ -1,10 +1,12 @@
 class MediaController < ApplicationController
+  include Serializer
+
   before_action :set_medium, only: %i[ show edit update destroy ]
   before_action :set_results, only: :index
 
   def search
-    if Search.exists? params[:query]
-      @results = Medium.multi_search(params[:query])
+    if Search.exists? query: params[:query]
+      @results = response_handler(Medium.multi_search(params[:query]))
     else
       @results = Tmdb.new(params[:query]).call
       run_jobs
@@ -93,6 +95,6 @@ class MediaController < ApplicationController
   end
 
   def get_images
-    @results["movies"].concat(@results["tvs"], @results["people"]).filter_map { |x| x["poster_path"] || x["profile_path"] }
+    images = @results["movies"].concat(@results["tvs"], @results["people"]).filter_map { |x| x["poster_path"] || x["profile_path"] }
   end
 end
