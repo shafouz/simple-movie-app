@@ -10,8 +10,6 @@ class Medium < ApplicationRecord
        LOWER(original_name) LIKE :search",
        search: "%#{search.downcase}%"
     ).limit(20).order(popularity: :desc)
-
-   Tmdb.new("").response_handler(results.as_json)
   end
 
   private

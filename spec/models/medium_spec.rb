@@ -8,12 +8,12 @@ RSpec.describe Medium, type: :model do
   describe "all searches" do
     it "finds when uppercase" do
       res = Medium.multi_search("DEAR")
-      expect(res[0]).to have_attributes(name: "Querido John")
+      expect(res[0]).to have_attributes(:name => "Querido John")
     end
 
     it "finds when lowercase" do
       res = Medium.multi_search("dear")
-      expect(res[0]).to have_attributes(name: "Querido John")
+      expect(res[0]).to have_attributes(:name => "Querido John")
     end
   end
 
@@ -37,6 +37,7 @@ RSpec.describe Medium, type: :model do
       res1 = Medium.multi_search("Dear")
       expect(res[0]).to eql(res1[0])
     end
+
   end
 
   describe "validations" do
