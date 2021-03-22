@@ -1,6 +1,7 @@
 class Medium < ApplicationRecord
   validates :original_title, uniqueness: { scope: :release_date }, if: :is_movie?
   validates :original_name, uniqueness: { scope: :first_air_date }, if: :is_tv?
+  validates :name, uniqueness: true, if: :is_person?
 
   def self.multi_search(search)
    results = where(
@@ -14,10 +15,14 @@ class Medium < ApplicationRecord
 
   private
   def is_movie?
-    media_type == "movie"
+    media_type === "movie"
   end
 
   def is_tv?
-    media_type == "tv"
+    media_type === "tv"
+  end
+
+  def is_person?
+    media_type === "person"
   end
 end
