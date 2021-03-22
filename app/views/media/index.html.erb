@@ -1,15 +1,13 @@
 <div data-controller="display" class="flex m-2">
-  <div class="flex-1">
+  <div class="w-1/4">
     <%= render partial: "media/filters" %>
   </div>
 
-  <div class="flex-1">
+  <div class="w-2/4">
     <%= render partial: "media/search_form" %>
     <%= turbo_frame_tag "results" do %>
     <% end %>
   </div>
 
-  <div class="flex-1">
-  </div>
 </div>
 

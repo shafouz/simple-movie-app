@@ -5,7 +5,7 @@ module MediaHelper
     exists = File.exist? Rails.root.join("app/assets/images#{img_path}")
 
     return img_path.tr("/", "") if exists
-    "https://image.tmdb.org/t/p/original#{img_path}"
+    "https://image.tmdb.org/t/p/w94_and_h141_bestv2#{img_path}"
   end
 
   def rounded_pill

@@ -1,0 +1,10 @@
+<div class="flex border rounded my-4">
+  <div class="w-24 h-36 flex-shrink-0">
+    <%= image_tag get_image_path(result[image_type]), class: "h-full w-full w-min-full" %>
+  </div>
+  <div class="p-2">
+    <h5 class="font-bold"><%= result["title"] || result["name"] %></h5>
+    <h6 class="text-gray-500"><%= result["release_date"] || result["first_air_date"] %></h6>
+    <p class="text-xs break-normal overflow-hidden"><%= result["overview"] %></p>
+  </div>
+</div>
