@@ -18,6 +18,15 @@ class MediaController < ApplicationController
     end
   end
 
+  def modal
+    @dom_id = params[:dom_id]
+    @result = params[:result]
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   # GET /media or /media.json
   def index
     @media = Medium.all

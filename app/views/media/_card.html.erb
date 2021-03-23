@@ -1,10 +1,12 @@
-<div class="flex h-36 border rounded my-4">
-  <a href="#" class="w-24 flex-shrink-0">
-    <%= image_tag get_image_path(result[image_type]), class: "h-full w-full w-min-full" %>
-  </a>
-  <div class="p-2">
-    <a href="#" class="font-bold"><%= result["title"] || result["name"] %></a>
-    <h6 class="text-gray-500"><%= result["release_date"] || result["first_air_date"] %></h6>
-    <p data-controller="card" class="text-xs break-normal overflow-hidden"><%= trim_overview(result["overview"]) %></p>
+<%= turbo_frame_tag "#{result["media_type"]}_#{index}" do %>
+  <div class="flex h-36 border rounded my-4">
+    <%= button_to modal_path, params: { dom_id: "#{result["media_type"]}_#{index}", result: result }, class: "w-24 h-full flex-shrink-0" do %>
+      <%= image_tag get_image_path(result["poster_path"] || result["profile_path"]), class: "h-full w-full w-min-full" %>
+    <% end %>
+    <div class="p-2">
+      <a href="#" class="font-bold"><%= result["title"] || result["name"] %></a>
+      <h6 class="text-gray-500"><%= result["release_date"] || result["first_air_date"] %></h6>
+      <p class="text-xs break-normal overflow-hidden"><%= trim_overview(result["overview"]) %></p>
+    </div>
   </div>
-</div>
+<% end %>

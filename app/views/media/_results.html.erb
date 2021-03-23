@@ -1,19 +1,19 @@
 <%= turbo_frame_tag "results" do %>
   <div data-display-target="media" class="movie results">
-    <% @results["movies"].each do |result| %>
-      <%= render partial: "media/card", locals: { result: result, image_type: "poster_path" } %>
+    <% @results["movies"].each_with_index do |result, index| %>
+      <%= render partial: "media/card", locals: { result: result, index: index } %>
     <% end %>
   </div>
 
   <div data-display-target="media" class="tv results">
-    <% @results["tvs"].each do |result| %>
-      <%= render partial: "media/card", locals: { result: result, image_type: "poster_path" } %>
+    <% @results["tvs"].each_with_index do |result, index| %>
+      <%= render partial: "media/card", locals: { result: result, index: index } %>
     <% end %>
   </div>
 
   <div data-display-target="media" class="person results">
-    <% @results["people"].each do |result| %>
-      <%= render partial: "media/card", locals: { result: result, image_type: "profile_path" } %>
+    <% @results["people"].each_with_index do |result, index| %>
+      <%= render partial: "media/card", locals: { result: result, index: index} %>
     <% end %>
   </div>
 <% end %>

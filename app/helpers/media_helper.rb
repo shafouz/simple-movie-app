@@ -29,4 +29,5 @@ module MediaHelper
   def form_control
     "border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
   end
+
 end
