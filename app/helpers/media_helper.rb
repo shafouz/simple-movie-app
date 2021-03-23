@@ -8,6 +8,16 @@ module MediaHelper
     "https://image.tmdb.org/t/p/w94_and_h141_bestv2#{img_path}"
   end
 
+  def trim_overview(overview)
+    return "" if overview.blank?
+
+    if overview.length >= 300
+      overview = overview[0..347] + "..."
+    else
+      overview
+    end
+  end
+
   def rounded_pill
     "w-8 h-6 text-sm text-white bg-blue-500 rounded-full flex flex-none justify-center items-center font-semibold"
   end

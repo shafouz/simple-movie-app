@@ -1,5 +1,4 @@
 import { Controller } from "stimulus"
-import { Turbo } from "turbo"
 
 export default class extends Controller {
   static targets = [ "filter" ]
