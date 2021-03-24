@@ -34,5 +34,8 @@ module SimpleMovieApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.time_zone = "Atlantic Time (Canada)"
+    config.i18n.available_locales = ["pt-BR", "en"]
+    config.i18n.default_locale = "pt-BR"
   end
 end

@@ -5,7 +5,7 @@
     <% end %>
     <div class="p-2">
       <a href="#" class="font-bold"><%= result["title"] || result["name"] %></a>
-      <h6 class="text-gray-500"><%= result["release_date"] || result["first_air_date"] %></h6>
+      <h6 class="text-gray-500"><%= convert_date(result["release_date"] || result["first_air_date"]) %></h6>
       <p class="text-xs break-normal overflow-hidden"><%= trim_overview(result["overview"]) %></p>
     </div>
   </div>

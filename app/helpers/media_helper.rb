@@ -18,6 +18,12 @@ module MediaHelper
     end
   end
 
+  def convert_date(date)
+    date_str = I18n.l Time.zone.parse(date)
+    date_str = date_str.split(",")[1]
+    date_str = date_str[1..date_str.length - 1]
+  end
+
   def rounded_pill
     "w-8 h-6 text-sm text-white bg-blue-500 rounded-full flex flex-none justify-center items-center font-semibold"
   end
