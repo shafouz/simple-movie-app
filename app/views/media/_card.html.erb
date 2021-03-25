@@ -4,7 +4,9 @@
       <%= image_tag get_image_path(result["poster_path"] || result["profile_path"]), class: "h-full w-full w-min-full" %>
     <% end %>
     <div class="p-2">
-      <a href="#" class="font-bold"><%= result["title"] || result["name"] %></a>
+      <%= button_to modal_path, params: { dom_id: "#{result["media_type"]}_#{index}", result: result } do %>
+        <p class="font-bold"><%= result["title"] || result["name"] %></p>
+      <% end %>
       <h6 class="text-gray-500"><%= convert_date(result["release_date"] || result["first_air_date"]) %></h6>
       <p class="text-xs break-normal overflow-hidden"><%= trim_overview(result["overview"]) %></p>
     </div>

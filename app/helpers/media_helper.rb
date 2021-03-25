@@ -41,7 +41,15 @@ module MediaHelper
   end
 
   def form_control
-    "border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+    "mb-2 border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+  end
+
+  def devise_form
+    "mb-3 w-full border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+  end
+
+  def devise_btn
+    "py-2 px-4 mx-3 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none"
   end
 
 end
