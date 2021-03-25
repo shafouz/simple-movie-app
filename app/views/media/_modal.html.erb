@@ -4,11 +4,18 @@
     <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
     <!-- modal content -->
-    <div class="p-3 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-      <div class="flex">
-        <%= image_tag get_image_path(result["poster_path"] || result["profile_path"]), class: "h-36 w-24" %>
-        <h1 class="text-bold"><%= result["title"] || result["name"] %></h1>
-        <button class="float-right h-0">X</button>
+    <div class="p-3 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+      <div class="flex h-96">
+        <div class="modal-image flex-shrink-0">
+          <%= image_tag get_big_image_path(result["poster_path"] || result["profile_path"]), class: "h-96 w-64 mr-3" %>
+        </div>
+        <div class="modal-body flex-grow">
+          <h1 class="font-bold leading-6 text-lg"><%= result["title"] || result["name"] %></h1>
+          <h3 class="text-semibold"><%= result["original_title"] || result["original_name"] %></h3>
+          <h6 class="text-gray-500 mb-3"><%= convert_date(result["release_date"] || result["first_air_date"]) %></h6>
+          <p class="text-xs break-normal overflow-hidden"><%= result["overview"] %></p>
+        </div>
+        <button data-action="modal#close" class="h-0 w-10 text-2xl">✖</button>
       </div>
     </div>
 

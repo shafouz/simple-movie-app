@@ -8,6 +8,12 @@ module MediaHelper
     "https://image.tmdb.org/t/p/w94_and_h141_bestv2#{img_path}"
   end
 
+  def get_big_image_path(img_path)
+    return "150.png" if img_path.blank?
+
+    "https://image.tmdb.org/t/p/original#{img_path}"
+  end
+
   def trim_overview(overview)
     return "" if overview.blank?
 
@@ -19,6 +25,8 @@ module MediaHelper
   end
 
   def convert_date(date)
+    return if date.blank?
+
     date_str = I18n.l Time.zone.parse(date)
     date_str = date_str.split(",")[1]
     date_str = date_str[1..date_str.length - 1]
