@@ -1,0 +1,6 @@
+<% flash.each do |msg_type, message| %>
+  <div data-controller="errors" class="flex justify-between bg-blue-100 my-5 p-3 rounded">
+    <p><%= message %></p>
+      <p data-action="click->errors#close" class="cursor-pointer float-right">✖</p>
+  </div>
+<% end %>

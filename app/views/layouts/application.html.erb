@@ -16,12 +16,6 @@
 
   <body>
     <%= render partial: "layouts/header" %>
-
-  <% flash.each do |msg_type, message| %>
-    <p>type: <%= msg_type %></p>
-    <p>message: <%= message %></p>
-  <% end %>
-
     <%= yield %>
   </body>
 </html>

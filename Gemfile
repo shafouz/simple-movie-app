@@ -60,3 +60,4 @@ gem "tailwindcss-rails", "~> 0.3.3"
 gem "down"
 gem "fileutils"
 gem "rails-i18n"
+gem 'devise-i18n'
