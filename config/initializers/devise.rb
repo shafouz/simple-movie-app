@@ -1,5 +1,38 @@
 # frozen_string_literal: true
 
+class TurboFailureApp < Devise::FailureApp
+  def respond
+    if request_format == :turbo_stream
+      redirect
+    else
+      super
+    end
+  end
+
+  def skip_format?
+    %w(html turbo_stream */*).include? request_format.to_s
+  end
+end
+
+class TurboController < ApplicationController
+  class Responder < ActionController::Responder
+    def to_turbo_stream
+      controller.render(options.merge(formats: :html))
+    rescue ActionView::MissingTemplate => error
+      if get?
+        raise error
+      elsif has_errors? && default_action
+        render rendering_options.merge(formats: :html, status: :unprocessable_entity)
+      else
+        redirect_to navigation_location
+      end
+    end
+  end
+
+  self.responder = Responder
+  respond_to :html, :turbo_stream
+end
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -14,7 +47,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '1613004717248485199fe44f48c77537520b8f2444a711d7dd9df73315fd7e6edb4e8816b9dd7abe394344c118bb988d77ea87512d5fc68be10e507252517464'
+  # config.secret_key = 'f50757ca846502a071707e68ff1073623be9e63ba3a4ee9ca95957d2812e5c03b5e759f53b54044bbca32549cb2bbddbf3c528d95c17ce67e353fbcb125c723c'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +159,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'e80bc5b247d4bdf2f2d767fb7229fa0430f0e3b8f86400998c9b07d5c72830344bb51bd8363b7fea1d0964679946eb65acb54f7ba9ad7d658d102003e2fd42d8'
+  # config.pepper = '3cd4a80f00361abb83a81756b3040dbfab45962453a6b8389f2edb86ce473ff221553f7f26296bfff70477a552c44011e49ac4ed16a42d1c0bda6c083b5e5ddd'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -266,7 +299,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :get
+  config.sign_out_via = :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
