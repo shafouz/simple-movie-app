@@ -37,7 +37,7 @@ module MediaHelper
   end
 
   def btn_primary
-    "py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none"
+    "py-2 cursor-pointer px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none"
   end
 
   def form_control
@@ -46,10 +46,6 @@ module MediaHelper
 
   def devise_form
     "mb-3 w-full border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-  end
-
-  def devise_btn
-    "py-2 px-4 mx-3 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none"
   end
 
 end

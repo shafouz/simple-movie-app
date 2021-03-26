@@ -1,5 +1,5 @@
-<div class="flex flex-col mx-auto items-center w-2/3">
-  <h2 class="my-3">Edit <%= resource_name.to_s.humanize %></h2>
+<div class="flex flex-col mx-auto p-3 items-center w-2/3">
+  <h2 class="my-5">Edit <%= resource_name.to_s.humanize %></h2>
 
   <div class="form w-4/6">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -31,7 +31,7 @@
     <% end %>
 
     <div class="flex items-center mt-36">
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: devise_btn, method: :delete %></p>
+      <p class="mr-3">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: btn_primary, method: :delete %></p>
     </div>
     <%= link_to "Back", :back %>
   </div>
