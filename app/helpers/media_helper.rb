@@ -11,6 +11,10 @@ module MediaHelper
   def get_big_image_path(img_path)
     return "150.png" if img_path.blank?
 
+    big_img = img_path[0..-5] + "_full.jpg"
+    exists = File.exist? Rails.root.join("app/assets/images#{big_img}")
+
+    return big_img.tr("/", "") if exists
     "https://image.tmdb.org/t/p/original#{img_path}"
   end
 
@@ -41,11 +45,11 @@ module MediaHelper
   end
 
   def form_control
-    "mb-2 border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+    "mr-3 border border-transparent rounded shadow-md leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
   end
 
   def devise_form
-    "mb-3 w-full border border-transparent rounded shadow leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+    "mb-3 w-full border border-transparent rounded shadow-md leading-3 w-3/4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
   end
 
 end

@@ -2,13 +2,16 @@ class MediaController < ApplicationController
   include Serializer
 
   before_action :set_medium, only: %i[ show edit update destroy ]
-  before_action :set_results, only: :index
+  before_action :set_results, only: :home
 
   def search
-    if Search.exists? query: params[:query]
-      @results = response_handler(Medium.multi_search(params[:query]))
+    @query = params[:query]
+    return if @query.blank?
+
+    if Search.exists? query: @query
+      @results = response_handler(Medium.multi_search(@query))
     else
-      @results = Tmdb.new(params[:query]).call
+      @results = Tmdb.new(@query).call
       run_jobs
       @results
     end
@@ -25,6 +28,9 @@ class MediaController < ApplicationController
     respond_to do |format|
       format.turbo_stream
     end
+  end
+
+  def home
   end
 
   # GET /media or /media.json
@@ -90,7 +96,7 @@ class MediaController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def medium_params
-    params.fetch(:medium, {})
+    params.require(:medium).permit(:id, :title, :original_title, :name, :original_name, :first_air_date, :profile_path, :release_date, :overview, :poster_path, :popularity, :media_type, :created_at, :updated_at)
   end
 
   def set_results
@@ -99,7 +105,7 @@ class MediaController < ApplicationController
 
   def run_jobs
     MediaSaverJob.perform_later(@results)
-    SearchSaverJob.perform_later(params[:query])
+    SearchSaverJob.perform_later(@query)
     ImageSaverJob.perform_later(get_images)
   end
 

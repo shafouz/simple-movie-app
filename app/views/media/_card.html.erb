@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "#{result["media_type"]}_#{index}" do %>
-  <div class="flex h-36 border rounded my-4">
+  <div class="flex h-36 border rounded my-4 overflow-hidden">
     <%= button_to modal_path, params: { dom_id: "#{result["media_type"]}_#{index}", result: result }, class: "w-24 h-full flex-shrink-0" do %>
       <%= image_tag get_image_path(result["poster_path"] || result["profile_path"]), class: "h-full w-full w-min-full" %>
     <% end %>

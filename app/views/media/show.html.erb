@@ -1,4 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="flex my-5 mx-auto p-3 w-2/3">
+  <div class="flex-shrink-0">
+    <img src="<%= get_big_image_path(@medium.poster_path || @medium.profile_path) %>" class="h-96 w-64 mr-3"></img>
+  </div>
 
-<%= link_to 'Edit', edit_medium_path(@medium) %> |
-<%= link_to 'Back', media_path %>
+  <div class="my-5 flex-grow">
+    <p class="text-lg font-bold"><%= @medium.title %></p> 
+    <p class="text-lg font-bold"><%= @medium.name %></p>
+    <p class="font-semibold"><%= @medium.original_name %></p>
+    <p class="font-semibold"><%= @medium.original_title %></p>
+    <p class="text-gray-500"><%= @medium.first_air_date %></p>
+    <p class="text-gray-500"><%= @medium.release_date %></p>
+    <p class="text-xs"><%= @medium.overview %></p>
+  </div>
+</div>
+
+<div class="flex justify-center my-5 items-center">
+  <%= link_to 'Edit', edit_medium_path(@medium), class: "mr-1" %> |
+  <%= link_to 'Back', media_path, class: "ml-1" %>
+</div>

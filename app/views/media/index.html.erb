@@ -1,12 +1,12 @@
-<div data-controller="display" class="flex p-5 m-2">
-  <div class="w-1/4">
-    <%= render partial: "media/filters" %>
-  </div>
-
-  <div class="w-2/4">
-    <%= render partial: "media/search_form" %>
-    <%= turbo_frame_tag "results" do %>
-    <% end %>
-  </div>
+<div class="p-5">
+  <% @media.each do |media| %> 
+    <div class="flex justify-between">
+        <h1><%= media["title"] || media["name"] %></h1>
+      <div class="flex">
+        <p class="mr-3"><%= link_to 'Show', media %></p>
+        <p class="mr-3"><%= link_to 'Edit', edit_medium_path(media) %></p>
+        <p><%= button_to 'Destroy', media, class: "cursor-pointer bg-transparent", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
+    </div>
+  <% end %>
 </div>
-

@@ -17,11 +17,12 @@ class ImageSaverJob < ApplicationJob
         .convert("png")
         .call
 
+      big_img = image_path[0..-5] + "_full.jpg"
       # original size
-      #full_size = FileUtils.mv temp.path, Rails.root.join("app/assets/images/#{image_path}")
+      full_size = FileUtils.mv temp.path, Rails.root.join("app/assets/images#{big_img}")
+
       # 100x100
-      #image_path[0] = "/100x"
-      small_size = FileUtils.mv processed.path, Rails.root.join("app/assets/images/#{image_path}")
+      small_size = FileUtils.mv processed.path, Rails.root.join("app/assets/images#{image_path}")
     end
   end
 end
