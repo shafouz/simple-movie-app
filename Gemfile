@@ -34,6 +34,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'vcr'
+  gem 'capybara'
+  gem "capybara-screenshot"
+  gem "selenium-webdriver"
+  gem "rexml"
 end
 
 group :development do

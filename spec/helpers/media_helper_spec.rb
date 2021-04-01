@@ -11,5 +11,43 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe MediaHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Image methods" do
+    describe "#get_image_path" do
+      it "returns placeholder image when no image" do
+        expect(helper.get_image_path("")).to be == "150.png"
+      end
+
+      it "returns url when img is not saved" do
+        expect(helper.get_image_path("abc")).to include("w94_and_h141_bestv2")
+      end
+    end
+
+    describe "#trim_img_path" do
+      it "returns path without /" do
+        expect(helper.trim_img_path("/asdjpojdqwd")).to_not include("/")
+      end
+    end
+
+    describe "#append_img_size" do
+      it "appends _full.jpg to path" do
+        expect(helper.append_img_size("/asdjoiwjqid.jpg")).to include("_full.jpg")
+      end
+    end
+
+    describe "#get_big_image_path" do
+      it "returns placeholder image when no image" do
+        expect(helper.get_big_image_path("")).to be == "150.png"
+      end
+
+      it "returns url when img is not saved" do
+        expect(helper.get_big_image_path("abc")).to include("original")
+      end
+    end
+
+    describe "#convert_date" do
+      it "returns formatted date" do
+        expect(helper.convert_date("12-01-2020")).to include("12 de janeiro de 2020")
+      end
+    end
+  end
 end
