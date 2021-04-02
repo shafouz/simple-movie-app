@@ -37,6 +37,5 @@ yarn-debug.log*
 
 #
 .env
-Procfile
 /app/assets/images/*
 /vcr_cassettes/*
