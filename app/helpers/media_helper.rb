@@ -1,6 +1,6 @@
 module MediaHelper
   def get_image_path(img_path)
-    return "150.png" if img_path.blank?
+    return "https://via.placeholder.com/150" if img_path.blank?
 
     exists = File.exist? Rails.root.join("app/assets/images#{img_path}")
 
@@ -9,7 +9,7 @@ module MediaHelper
   end
 
   def get_big_image_path(img_path)
-    return "150.png" if img_path.blank?
+    return "https://via.placeholder.com/150" if img_path.blank?
 
     big_img = append_img_size(img_path)
     exists = File.exist? Rails.root.join("app/assets/images#{big_img}")
