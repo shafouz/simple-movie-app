@@ -22,7 +22,6 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -61,7 +60,6 @@ gem 'devise'
 gem 'faraday'
 gem "hotwire-rails"
 gem "tailwindcss-rails", "~> 0.3.3"
-gem "down"
 gem "fileutils"
 gem "rails-i18n"
 gem 'devise-i18n'

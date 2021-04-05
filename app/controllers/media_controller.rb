@@ -106,7 +106,6 @@ class MediaController < ApplicationController
   def run_jobs
     MediaSaverJob.perform_later(@results)
     SearchSaverJob.perform_later(@query)
-    ImageSaverJob.perform_later(get_images)
   end
 
   def get_images

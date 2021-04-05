@@ -2,28 +2,14 @@ module MediaHelper
   def get_image_path(img_path)
     return "https://via.placeholder.com/150" if img_path.blank?
 
-    exists = File.exist? Rails.root.join("app/assets/images#{img_path}")
 
-    return trim_img_path(img_path) if exists
     "https://image.tmdb.org/t/p/w94_and_h141_bestv2#{img_path}"
   end
 
   def get_big_image_path(img_path)
     return "https://via.placeholder.com/150" if img_path.blank?
 
-    big_img = append_img_size(img_path)
-    exists = File.exist? Rails.root.join("app/assets/images#{big_img}")
-
-    return trim_img_path(big_img) if exists
     "https://image.tmdb.org/t/p/original#{img_path}"
-  end
-
-  def append_img_size(img_path)
-    img_path[0..-5] + "_full.jpg"
-  end
-
-  def trim_img_path(img_path)
-    img_path.tr("/", "")
   end
 
   def trim_overview(overview)

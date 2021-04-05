@@ -14,7 +14,7 @@ RSpec.describe MediaHelper, type: :helper do
   describe "Image methods" do
     describe "#get_image_path" do
       it "returns placeholder image when no image" do
-        expect(helper.get_image_path("")).to be == "150.png"
+        expect(helper.get_image_path("")).to be == "https://via.placeholder.com/150"
       end
 
       it "returns url when img is not saved" do
@@ -22,21 +22,9 @@ RSpec.describe MediaHelper, type: :helper do
       end
     end
 
-    describe "#trim_img_path" do
-      it "returns path without /" do
-        expect(helper.trim_img_path("/asdjpojdqwd")).to_not include("/")
-      end
-    end
-
-    describe "#append_img_size" do
-      it "appends _full.jpg to path" do
-        expect(helper.append_img_size("/asdjoiwjqid.jpg")).to include("_full.jpg")
-      end
-    end
-
     describe "#get_big_image_path" do
       it "returns placeholder image when no image" do
-        expect(helper.get_big_image_path("")).to be == "150.png"
+        expect(helper.get_big_image_path("")).to be == "https://via.placeholder.com/150"
       end
 
       it "returns url when img is not saved" do
