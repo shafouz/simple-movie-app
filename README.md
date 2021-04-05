@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple movie finder app using Hotwire, Tailwindcss and Tmdb api.
 
-Things you may want to cover:
+Needs a .env with ENV["API_KEY"] to run locally
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Live demo: [DEMO](https://evening-spire-47929.herokuapp.com/)
