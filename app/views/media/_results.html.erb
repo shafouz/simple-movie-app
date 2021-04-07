@@ -1,19 +1,23 @@
 <%= turbo_frame_tag "results" do %>
-  <div data-display-target="media" class="movie results">
-    <% @results["movies"].each_with_index do |result, index| %>
-      <%= render partial: "media/card", locals: { result: result, index: index } %>
-    <% end %>
-  </div>
+  <% if @results["tvs"].blank? && @results["people"].blank? && @results["movies"].blank? %>
+    No results found
+  <% else %>
+    <div data-display-target="media" class="movie results">
+      <% @results["movies"].each_with_index do |result, index| %>
+        <%= render partial: "media/card", locals: { result: result, index: index } %>
+      <% end %>
+    </div>
 
-  <div data-display-target="media" class="tv results">
-    <% @results["tvs"].each_with_index do |result, index| %>
-      <%= render partial: "media/card", locals: { result: result, index: index } %>
-    <% end %>
-  </div>
+    <div data-display-target="media" class="tv results">
+      <% @results["tvs"].each_with_index do |result, index| %>
+        <%= render partial: "media/card", locals: { result: result, index: index } %>
+      <% end %>
+    </div>
 
-  <div data-display-target="media" class="person results">
-    <% @results["people"].each_with_index do |result, index| %>
-      <%= render partial: "media/card", locals: { result: result, index: index} %>
-    <% end %>
-  </div>
+    <div data-display-target="media" class="person results">
+      <% @results["people"].each_with_index do |result, index| %>
+        <%= render partial: "media/card", locals: { result: result, index: index} %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

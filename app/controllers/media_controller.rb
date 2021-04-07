@@ -16,6 +16,7 @@ class MediaController < ApplicationController
       @results
     end
 
+
     respond_to do |format|
       format.turbo_stream
     end
