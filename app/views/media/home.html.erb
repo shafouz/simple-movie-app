@@ -1,9 +1,9 @@
 <div data-controller="display" class="flex p-5 m-2">
-  <div class="w-1/4">
+  <div class="hidden lg:block w-1/4">
     <%= render partial: "media/filters" %>
   </div>
 
-  <div class="w-2/4">
+  <div class="lg:ml-5 lg:w-2/4">
     <%= render partial: "media/search_form" %>
     <%= turbo_frame_tag "results" do %>
     <% end %>

@@ -7,7 +7,7 @@
     <div class="p-3 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
       <div class="flex h-96">
         <div class="modal-image flex-shrink-0">
-          <%= image_tag get_big_image_path(result["poster_path"] || result["profile_path"]), class: "h-96 w-64 mr-3" %>
+          <%= image_tag get_big_image_path(result["poster_path"] || result["profile_path"]), class: "hidden sm:block h-96 w-64 mr-3" %>
         </div>
         <div class="modal-body flex-grow">
           <h1 class="font-bold leading-6 text-lg"><%= result["title"] || result["name"] %></h1>
