@@ -4,7 +4,7 @@ class Medium < ApplicationRecord
   validates :name, uniqueness: true, if: :is_person?
 
   def self.multi_search(search)
-   results = where(
+    where(
       "LOWER(title) LIKE :search OR
        LOWER(original_title) LIKE :search OR
        LOWER(name) LIKE :search OR

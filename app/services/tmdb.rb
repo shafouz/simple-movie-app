@@ -1,6 +1,4 @@
 class Tmdb
-  include Serializer
-
   def initialize(query)
     @query = query 
   end
@@ -10,6 +8,6 @@ class Tmdb
   def call
     req = Faraday.get("#{API_ENDPOINT}multi", { query: @query, language: "pt-BR", api_key: "#{ENV["API_KEY"]}" })
     parsed_body = JSON.parse(req.body)
-    response_handler(parsed_body)
+    Displayer.response_handler(parsed_body["results"])
   end
 end

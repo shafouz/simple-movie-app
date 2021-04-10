@@ -1,6 +1,4 @@
 class MediaController < ApplicationController
-  include Serializer
-
   before_action :set_medium, only: %i[ show edit update destroy ]
   before_action :set_results, only: :home
 
@@ -9,7 +7,7 @@ class MediaController < ApplicationController
     return if @query.blank?
 
     if Search.exists? query: @query
-      @results = response_handler(Medium.multi_search(@query))
+      @results = Displayer.response_handler(Medium.multi_search(@query))
     else
       @results = Tmdb.new(@query).call
       run_jobs

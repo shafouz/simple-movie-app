@@ -1,10 +1,8 @@
 require 'rails_helper'
 
-describe Serializer do
-  include Serializer 
-
+describe Displayer do
   let(:json_input) { Tmdb.new("Avengers").call  }
-  let(:active_record_input) { response_handler(Medium.multi_search("Avengers")) }
+  let(:active_record_input) { Displayer.response_handler(Medium.multi_search("Avengers")) }
 
   it "has right keys for json response", :vcr do
     expect(json_input).to be_kind_of Hash
