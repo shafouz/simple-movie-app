@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Displayer do
-  let(:json_input) { Tmdb.new("Avengers").call  }
+  let(:json_input) { Displayer.response_handler(Tmdb.new("Avengers").call)  }
   let(:active_record_input) { Displayer.response_handler(Medium.multi_search("Avengers")) }
 
   it "has right keys for json response", :vcr do

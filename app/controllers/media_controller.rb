@@ -9,7 +9,7 @@ class MediaController < ApplicationController
     if Search.exists? query: @query
       @results = Displayer.response_handler(Medium.multi_search(@query))
     else
-      @results = Tmdb.new(@query).call
+      @results = Displayer.response_handler(Tmdb.new(@query).call)
       run_jobs
       @results
     end
